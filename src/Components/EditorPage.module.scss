@@ -1,0 +1,86 @@
+.editorPagelayout {
+    padding: 8px 30px 20px;
+
+    .error{
+        color: red;
+        margin-top: 5px;
+        font-size: 12px;
+    }
+
+    .videoDetailsHeader {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 24px 0;
+
+        .title {
+            font-size: 40px;
+            font-weight: bolder;
+        }
+
+        .userInfo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .name {
+                font-size: 18px;
+                font-weight: 500;
+                text-transform: capitalize;
+            }
+
+            .type {
+                text-transform: capitalize;
+            }
+
+            .icon {
+                cursor: pointer;
+                height: 34px !important;
+                width: 24px !important;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .QIDInputContainer{
+        .labelText{
+            font-size: 26px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .searchBar{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .QIDInputBox{
+                height: 28px;
+                font-size: 18px;
+            }
+            .QIDSubmitButton{
+                height: 30px;
+                font-size: 16px;
+                margin-left: 10px;
+                background-color: green;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                width: 80px;
+                cursor: pointer;
+
+                // :hover{
+                //     background: ;
+                // }
+            }
+        }
+    }
+
+    .modifyButton{
+        margin: 40px auto 20px;
+        background-color: aqua;
+        cursor: pointer;
+        width: 100px;
+        padding: 14px;
+        text-align: center;
+        border-radius: 5px;
+    }
+}
