@@ -2,10 +2,13 @@ import * as React from "react";
 import { useState } from "react";
 import styles from "./EditorPage.module.scss";
 import { useNavigate } from 'react-router-dom';
-import logoutIcon from '../assets/logout-icon.svg';
 import { isEmpty } from "lodash";
+
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import MathType from '@wiris/mathtype-ckeditor5';
+
+import { API_ENDPOINT } from "../constants";
 
 const EditorPage = ({ userInfo }) => {
     const navigate = useNavigate();
@@ -26,9 +29,10 @@ const EditorPage = ({ userInfo }) => {
     }
 
     const handleSubmitQID = () => {
-        setQIDDataLoading(true)
-        // fetchQIDData(QID).then(res => {
-        fetch(`https://search-api-stg.byjusweb.com/byjus/web_search/get_question_by_id/${QID}`).then(res => res.json()).then(resp_data => {
+        setQIDDataLoading(true);
+        setQIDInfoData({});
+
+        fetch(API_ENDPOINT +  `get_question_by_id/${QID}/`).then(res => res.json()).then(resp_data => {
             setQIDInfoData(resp_data)
             setQIDDataLoading(false);
         }).catch(err => {
@@ -37,12 +41,7 @@ const EditorPage = ({ userInfo }) => {
         })
     }
 
-    const handleQuestionValueChange = (event) => {
-        console.log(event.target.value)
-    }
-
     const handleModifyClick = () => {
-        console.log("modify")
         console.log(quesVal, solVal)
     }
 
@@ -55,7 +54,7 @@ const EditorPage = ({ userInfo }) => {
                         <div><input type="text" value={QID} onChange={handleQIDChange} className={styles.QIDInputBox} placeholder='Enter question id here...'></input></div>
                         <div><button disabled={!QID} onClick={handleSubmitQID} className={styles.QIDSubmitButton}> Fetch </button></div>
                     </div>
-                    <div className={styles.error}>{QIDError ? `Incorrect QID` : null}</div>
+                    
                 </div>
 
                 <div className={styles.userInfo}>
@@ -69,50 +68,47 @@ const EditorPage = ({ userInfo }) => {
 
             </div>
             <br></br>
+            {QIDDataLoading === true &&
+                <span className={styles.loading}>Loading...</span>
+            }
+            {QIDError && 
+                <div className={styles.error}>Could not fetch data</div>
+            }
+
             {!isEmpty(QIDInfoData) &&
                 <>
                     <h4>Question</h4>
                     <CKEditor
                         editor={ClassicEditor}
                         data={QIDInfoData?.question_Title_Mathjax}
+                        config={ {
+                            // plugins: [  ],
+                            // toolbar: [ 'MathType', 'ChemType', ]
+                        }}
+
                         onReady={editor => {
-                            // You can store the "editor" and use when it is needed.
-                            console.log('Editor is ready to use!', editor);
                         }}
                         onChange={(event, editor) => {
                             const data = editor.getData();
-                            // console.log({ event, editor, data });
                             setQuesVal(data)
                         }}
-                        // onBlur={(event, editor) => {
-                        //     console.log('Blur.', editor);
-                        // }}
-                        // onFocus={(event, editor) => {
-                        //     console.log('Focus.', editor);
-                        // }}
+                     
                     />
                     <br></br>
                     <br></br>
                     <hr></hr>
                     <br></br>
                     <h4>Solution</h4>
-                    <CKEditor
+                    {/* <CKEditor
                         editor={ClassicEditor}
                         data={QIDInfoData?.question_Solution_Mathjax}
                         onReady={editor => {
-                            console.log('Editor is ready to use!', editor);
                         }}
                         onChange={(event, editor) => {
                             const data = editor.getData();
                             setSolVal(data)
                         }}
-                        // onBlur={(event, editor) => {
-                        //     console.log('Blur.', editor);
-                        // }}
-                        // onFocus={(event, editor) => {
-                        //     console.log('Focus.', editor);
-                        // }}
-                    />
+                    /> */}
                     <div className={styles.buttonHolder}>
                         <button className={styles.modifyButton} onClick={handleModifyClick}>Modify</button>
                     </div>
