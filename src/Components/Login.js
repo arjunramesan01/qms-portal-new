@@ -3,22 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import { Oval } from "react-loader-spinner";
 import styles from './Login.module.scss'
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
 import cx from 'classnames'
 
-// async function login(data) {
-//     try {
-//         const req = data
-//         const rese = await axios.post(`${videoDevUrl}v1/login/login`, req, {
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
-//         })
-//         return Promise.resolve(rese.data)
-//     } catch (err) {
-//         return Promise.reject(err)
-//     }
-// }
 
 const login_creds_username = 'root@byjus.com'
 const login_creds_password = 'root'
@@ -53,16 +39,6 @@ const Login = () => {
             localStorage.setItem('authToken', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MDVhMzc5MTg2M2YzYTViZTE0YjE0NzgiLCJyb2xlIjoiYnlqdS1hbnN3ZXItcmV2aWV3ZXIiLCJ0aW1lc3RhbXAiOiIyMDIxLTA1LTEwVDEwOjM0OjM4LjUyNloiLCJpYXQiOjE2MjA2NDI4Nzh9.f5xoVcgtvWAOwOnbc-VCMDjRwt7P4Pax5ftUL2TRUJQ')
             navigate('/editor')
         }
-        // setLoginApiLoading(true);
-        // login({ 'username': username, 'password': password }).then(res => {
-        //     localStorage.setItem('authToken', res.token)
-        //     navigate('/videos')
-        //     setLoginApiLoading(false);
-        // }).catch(err => {
-        //     setLoginError(err.response?.data?.message || err.message)
-        //     setLoginApiLoading(false);
-        //     navigate('/')
-        // })
     }
 
 
@@ -96,7 +72,7 @@ const Login = () => {
                     </div>
                     <div className={styles.loginError}>{loginError ?? null}</div>
                     <div className={styles.submitButton}>
-                        <button /* type="submit" */ className={cx([styles["btn-submit"], styles["btn-primary"]])} disabled={!username || !password} onClick={handleSubmit}>
+                        <button  className={cx([styles["btn-submit"], styles["btn-primary"]])} disabled={!username || !password} onClick={handleSubmit}>
                             {loginApiLoading ?
                                 <div className={styles.loader}>
                                     <Oval

@@ -3,24 +3,9 @@ import { Oval } from "react-loader-spinner";
 import { useState, useEffect, useRef } from "react";
 import Login from "./Components/Login";
 import EditorPage from "./Components/EditorPage";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { devUrl, stgUrl, videoDevUrl } from "./Common";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-// async function fetchUserData() {
-//   try {
-//     const rese = await axios.get(`${videoDevUrl}v1/login/display-role`, {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-//       },
-//     });
-//     return Promise.resolve(rese.data);
-//   } catch (err) {
-//     return Promise.reject(err);
-//   }
-// }
 
 function App() {
   const [loginCheckLoader, setLoginCheckLoader] = useState(true);
@@ -28,17 +13,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      // fetchUserData()
-      //   .then((res) => {
-      //     setUserInfo(res?.data);
-      //     setLoginCheckLoader(false);
-      //   })
-      //   .catch((err) => {
-      //     alert(err);
-      //     navigate("/");
-      //     setLoginCheckLoader(false);
-      //   });
+    if (localStorage.getItem("authToken") == 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MDVhMzc5MTg2M2YzYTViZTE0YjE0NzgiLCJyb2xlIjoiYnlqdS1hbnN3ZXItcmV2aWV3ZXIiLCJ0aW1lc3RhbXAiOiIyMDIxLTA1LTEwVDEwOjM0OjM4LjUyNloiLCJpYXQiOjE2MjA2NDI4Nzh9.f5xoVcgtvWAOwOnbc-VCMDjRwt7P4Pax5ftUL2TRUJQ') {
       setUserInfo({ name: "Root", role: "Admin" });
       setLoginCheckLoader(false);
     } else {
