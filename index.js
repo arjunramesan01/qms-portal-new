@@ -27,6 +27,8 @@ function initiateCKEditor() {
         "https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js",
     },
   })
+  
+  
     .then((editor) => {
       window.editor = editor;
       editors['questionEditor'] = editor;
@@ -133,6 +135,7 @@ function fetchData() {
 }
 
 function updateQuestion(){
-  console.log(editors['questionEditor'].getData());
-  console.log(editors['solutionEditor'].getData());
+  console.log(editors['solutionEditor'])
+  console.log(editors['questionEditor'].getHtml());
+  console.log(editors['solutionEditor'].getHtml());
 }
