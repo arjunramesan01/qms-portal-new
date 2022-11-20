@@ -48,5 +48,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "npx http-server -o ./sample -s -c-1"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-source-editing": "^31.1.0"
   }
 }

@@ -56,6 +56,7 @@ import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformatio
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline.js';
 import WordCount from '@ckeditor/ckeditor5-word-count/src/wordcount.js';
 import WProofreader from '@webspellchecker/wproofreader-ckeditor5/src/wproofreader.js';
+import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting.js';
 
 class Editor extends ClassicEditor {}
 
@@ -113,7 +114,8 @@ Editor.builtinPlugins = [
 	TextTransformation,
 	Underline,
 	WordCount,
-	WProofreader
+	WProofreader,
+	SourceEditing
 ];
 
 // Editor configuration.
@@ -154,7 +156,8 @@ Editor.defaultConfig = {
 			'link',
 			'insertTable',
 			'imageUpload',
-			'wproofreader'
+			'wproofreader',
+			'sourceEditing'
 		]
 	},
 	language: 'en',
