@@ -135,7 +135,7 @@ function fetchData() {
 }
 
 function updateQuestion(){
-  console.log(editors['solutionEditor'])
-  console.log(editors['questionEditor'].getHtml());
-  console.log(editors['solutionEditor'].getHtml());
+  console.log(editors['questionEditor'].getData());
+  document.getElementById('questionEditorSource').value = editors['questionEditor'].getData()
+  console.log(editors['solutionEditor'].getData());
 }
