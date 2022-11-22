@@ -1,4 +1,5 @@
 const API_ENDPOINT = "https://search-api-stg.byjusweb.com/byjus/web_search/";
+// const API_ENDPOINT = "http://localhost:8080/byjus/web_search/";
 // const API_ENDPOINT = 'https://search-api.byjusweb.com/byjus/web_search/';
 const loginProfiles = [
   {
@@ -8,6 +9,7 @@ const loginProfiles = [
   },
 ];
 var editors = {};
+var quesId = null;
 
 function destroyEditor(){
   if(editors['questionEditor']){
@@ -97,7 +99,7 @@ function fetchData() {
   document.getElementById('ckeditorSection').style.display = 'none';
   destroyEditor();
 
-  var quesId = document.getElementById("questionId").value;
+  quesId = document.getElementById("questionId").value;
   if (quesId) {
     let fetchRes = fetch(API_ENDPOINT + "get_question_by_id/" + quesId + "/");
     fetchRes
@@ -135,6 +137,28 @@ function fetchData() {
 }
 
 function updateQuestion(){
-  console.log(editors['questionEditor'].getData());
-  console.log(editors['solutionEditor'].getData());
+  var question = editors['questionEditor'].getData();
+  var solution = editors['solutionEditor'].getData()
+
+  let fetchRes = fetch(API_ENDPOINT + "update_question/", {
+    method : 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  
+    body: JSON.stringify({
+      'qid' : quesId,
+      'question' : question,
+      'solution' : solution
+    })
+  });
+  fetchRes
+    .then((res) => res.json())
+    .then((d) => {
+      document.getElementById("messageScreenSubmit").style.color = "green";
+      document.getElementById("messageScreenSubmit").innerHTML = "Updated details!";
+    }).catch((error) => {
+      document.getElementById("messageScreenSubmit").style.color = "red";
+      document.getElementById("messageScreenSubmit").innerHTML = "Could not update details!";
+    })
 }
