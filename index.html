@@ -52,14 +52,16 @@
 				<div class="row mt-4">
 					<div class="col-md-2"></div>
 					<div class="col-md-5">
-						<label>Question ID : </label>
-						<input class="form-control mt-2" type="number" id="questionId" placeholder="Enter question id here...">
-						<div id="messageScreenFetch" class="mt-2">
-						</div>
+						<section id="questionIdSection">
+							<label>Question ID : </label>
+							<input class="form-control mt-2" type="number" id="questionId" placeholder="Enter question id here...">
+							<div id="messageScreenFetch" class="mt-2">
+							</div>
+						</section>
 					</div>
 					<div class="col-md-1">
 						<br>
-						<button class="btn btn-primary mt-2" onclick="fetchData()">Fetch</button>
+						<button class="btn btn-primary mt-2" id="fetchButton" onclick="fetchData()">Fetch</button>
 					</div>
 					<div class="col-md-2">
 						<div id="roleDiv" class="float-right"></div>

@@ -1,4 +1,7 @@
 const API_ENDPOINT = 'https://qms-api-qeditor.byjusweb.com/';
+// const API_ENDPOINT = 'http://localhost:8080/';
+
+
 const loginProfiles = [
   {
     role: "Editor",
@@ -117,6 +120,11 @@ function fetchData() {
           initiateCKEditor();
 
           document.getElementById("messageScreenFetch").innerHTML = "";
+
+
+          document.getElementById("fetchButton").style.display = 'none'
+          document.getElementById("questionIdSection").style.display = 'none'
+          
         }
         else{
           throw('Error')
@@ -138,6 +146,8 @@ function updateQuestion(){
   var question = editors['questionEditor'].getData();
   var solution = editors['solutionEditor'].getData()
 
+  console.log(quesId)
+
   let fetchRes = fetch(API_ENDPOINT + "update_question/", {
     method : 'POST',
     headers: {
@@ -155,6 +165,13 @@ function updateQuestion(){
     .then((d) => {
       document.getElementById("messageScreenSubmit").style.color = "green";
       document.getElementById("messageScreenSubmit").innerHTML = "Updated details!";
+      if(d.isError){
+        document.getElementById("messageScreenSubmit").style.color = "red";
+        document.getElementById("messageScreenSubmit").innerHTML = "Could not update details!";
+      }
+      window.setTimeout(()=>{
+        window.location.reload()
+      },3000)
     }).catch((error) => {
       document.getElementById("messageScreenSubmit").style.color = "red";
       document.getElementById("messageScreenSubmit").innerHTML = "Could not update details!";
