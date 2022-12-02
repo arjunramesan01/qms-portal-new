@@ -1,6 +1,4 @@
-// const API_ENDPOINT = "https://search-api-stg.byjusweb.com/byjus/web_search/";
-// const API_ENDPOINT = "http://localhost:8080/byjus/web_search/";
-const API_ENDPOINT = 'https://search-api.byjusweb.com/byjus/web_search/';
+const API_ENDPOINT = 'https://qms-api-qeditor.byjusweb.com/';
 const loginProfiles = [
   {
     role: "Editor",
